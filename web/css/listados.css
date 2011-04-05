@@ -1,0 +1,117 @@
+.listados {
+	margin: 0 auto;
+	width: 100%;
+}
+
+.listados tr.header {
+	background-color: #176F94;
+	color: white;
+}
+
+.listados tr.even {
+	background-color: #f3fafc;
+}
+
+.listados tr.odd {
+	
+}
+
+.listados tr:hover {
+	background-color: #fff;
+}
+
+.listados tr.header:hover {
+	background-color: #176F94;
+}
+
+.listados td {
+	padding: 12px 15px;
+	border-bottom: 1px dotted #999;
+}
+
+.listados td.especial {
+	border-right: 1px dotted #999;
+}
+
+.listados .especial {
+	color: #524F46;
+	font-weight: bold;
+	width: 30%;
+}
+
+.listados .especial {
+	padding: 0;
+	color: #524F46;
+	width: 40%;
+}
+
+.listados .especial a {
+	padding: 12px 15px;
+	display: block;
+	text-decoration: none;
+}
+
+.listados .especial a:hover {
+	text-decoration: underline;
+}
+
+.more_listados {
+	text-align: right;
+	text-transform: uppercase;
+	font-size: 85%;
+	margin: 5px 15px 15px;
+	clear: both;
+}
+
+.more_listados a {
+	color: #176f94;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 130%;
+}
+
+.more_listados a:hover {
+	color: #176f94;
+	text-decoration: underline;
+}
+
+.pagination_desc {
+	margin-left: 15px;
+	margin-top: 10px;
+	font-style: italic;
+	color: #828f95;
+}
+
+.pagination_desc strong {
+	color: #176f94;
+}
+
+.pagination {
+	margin-top: 10px;
+	float: right;
+	margin-right: 10px;
+	color: #176f94;
+	font-size: 110%;
+	font-weight: bold;
+}
+
+.pagination a {
+	margin: 0 1px;
+	text-decoration: none;
+	color: #828f95;
+	font-size: 75%;
+	vertical-align: 1px;
+	font-weight: normal;
+}
+
+.pagination a:hover {
+	text-decoration: underline;
+}
+
+.pagination img {
+	vertical-align: -2px;
+}
+
+.green {
+	background-color: #50BC8D !important;
+}

@@ -1,0 +1,222 @@
+# # Populate this file with data to be loaded by your ORM's *:data-load task.
+# # You can create multiple files in this directory (i.e. 010_users.yml,
+# # 020_articles.yml, etc) which will be loaded in alphabetical order.
+# # 
+# # See documentation for your ORM's *:data-load task for more information.
+
+Proyecto:
+  PFC:
+    nombre: PFC
+    descripcion: Proyecto Final de Carrera
+    url: www.google.es
+    Users: [usuario1,usuario4,usuario3]
+  Proyecto2:
+    nombre: ProyectoSecreto1
+    descripcion: Proyecto de dominacion mundial
+    url: www.elfinestacerca.es
+    Users: [usuario1,usuario3]
+  
+Tipo:
+  tipo1:
+    nombre: Analisis
+  tipo2:
+    nombre: codigo
+     
+Estado:
+  estado0:
+    nombre: Creada
+    descripcion: Creada
+    fase: inicial
+    edicion: 1
+    EstadosHijos: [estado1]
+  estado1:
+    nombre: Solicitada
+    descripcion: Solicitada
+    fase: inicial
+    edicion: 0
+    EstadosHijos: [estado2, estado3, estado4, estado6]
+  estado2:
+    nombre: Abierta
+    descripcion: Abierta
+    fase: comite
+    edicion: 1
+    EstadosHijos: [estado8, estado4, estado6]
+  estado3:
+    nombre: Pospuesta
+    descripcion: Postpuesta
+    fase: comite
+    edicion: 0
+    EstadosHijos: [estado1]
+  estado4:
+    nombre: Rechazada
+    descripcion: Rechazada
+    fase: comite
+    edicion: 1
+    EstadosHijos: [estado1, estado5, estado7]
+  estado5:
+    nombre: Necesita_mas_informacion
+    fase: comite
+    descripcion: Necesita mas informacion
+    edicion: 1
+    EstadosHijos: [estado1]
+  estado6:
+    nombre: Duplicada
+    descripcion: Duplicada
+    fase: comite
+    edicion: 1
+    EstadosHijos: [estado1, estado5, estado7]
+  estado7:
+    nombre: Cerrada
+    descripcion: Cerrada
+    fase: comite
+    edicion: 0
+  estado8:
+    nombre: Asignada
+    descripcion: Asignada
+    fase: trabajador
+    edicion: 0
+    EstadosHijos: [estado9]
+  estado9:
+    nombre: Resuelta
+    descripcion: Resuelta
+    fase: comite
+    edicion: 0
+    EstadosHijos: [estado11, estado10]
+  estado10:
+    nombre: Test_fallido
+    descripcion: Test fallido
+    fase: trabajador
+    edicion: 1
+    EstadosHijos: [estado9]
+  estado11:
+    nombre: Verificada
+    descripcion: Verificada
+    fase: testeador
+    edicion: 1
+    EstadosHijos: [estado7 ,estado10]
+
+Artefacto:
+  artefacto1:
+    nombre: |
+      Artefacto de documentacion
+    descripcion: |
+      Bla bla bla
+    Tipo: tipo1
+    Proyecto: PFC
+  artefacto2:
+    nombre: |
+      Documento de pruebas
+    descripcion: |
+      Bla bla bla
+    Tipo: tipo1
+    Proyecto: PFC
+  artefacto3:
+    nombre: |
+      Codigo del calendario
+    descripcion: |
+      Bla bla bla
+    Tipo: tipo1
+    Proyecto: PFC
+    
+sfGuardGroup:
+  grupo1:
+    name: administrador
+    Permissions:    [permiso1, permiso6,permiso7,permiso8,permiso9,permiso10,permiso11,permiso12,permiso14,permiso15,permiso16,permiso17]
+  grupo2:
+    name: usuario
+    Permissions:    [permiso2, permiso6, permiso11]
+  grupo3:
+    name: testeador
+    Permissions:    [permiso3, permiso15]
+  grupo4:
+    name: desarrollador
+    Permissions:    [permiso4,  permiso14,permiso16]
+  grupo5:
+    name: comite
+    Permissions:    [permiso5, permiso7,permiso8,permiso9,permiso10,permiso12,permiso17]
+
+sfGuardPermission:
+  permiso1:
+    name: administrador
+  permiso2:
+    name: usuario
+  permiso3:
+    name: testeador
+  permiso4:
+    name: desarrollador
+  permiso5:
+    name: comite
+  permiso6:
+    name: Creada
+  permiso7:
+    name: Solicitada
+  permiso8:
+    name: Abierta
+  permiso9:
+    name: Pospuesta
+  permiso10:
+    name: Rechazada
+  permiso11:
+    name: Necesita_mas_informacion
+  permiso12:
+    name: Duplicada
+  permiso14:
+    name: Asignada
+  permiso15:
+    name: Resuelta
+  permiso16:
+    name: Test_fallido
+  permiso17:
+    name: Verificada
+
+sfGuardUser:
+  usuario1:
+    first_name: Javier
+    last_name: Gamarra
+    email_address: nhpatt@gmail.com
+    username: admin
+    algorithm: sha1
+    password: admin
+    is_active: 1
+    is_super_admin: true
+    Groups:         [grupo1]
+  usuario2:
+    first_name: Carmen
+    last_name: Loriente
+    email_address: diablillory@gmail.com
+    username: usuario
+    algorithm: sha1
+    password: usuario
+    is_active: 1
+    is_super_admin: false
+    Groups:         [grupo2]
+  usuario3:
+    first_name: Albano
+    last_name: Narganes
+    email_address: albanonarganes@gmail.com
+    username: testeador
+    algorithm: sha1
+    password: testeador
+    is_active: 1
+    is_super_admin: false
+    Groups:         [grupo3]
+  usuario4:
+    first_name: Javier
+    last_name: Garcia
+    email_address: javinoes@gmail.com
+    username: desarrollador
+    algorithm: sha1
+    password: desarrollador
+    is_active: 1
+    is_super_admin: false
+    Groups:         [grupo4]
+  usuario5:
+    first_name: Pablo
+    last_name: de la Fuente
+    email_address: dameunadebravas@gmail.com
+    username: comite
+    algorithm: sha1
+    password: comite
+    is_active: 1
+    is_super_admin: false
+    Groups:         [grupo5]

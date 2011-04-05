@@ -1,0 +1,106 @@
+.formulario h1 {
+	
+}
+
+.formulario h2 {
+	margin-top: -30px !important;
+	font-size: 110% !important;
+	font-style: italic !important;
+	padding: 5px 20px !important;
+	float: right;
+	color: #fff;
+	background-color: transparent !important;
+	line-height: 100% !important;
+	text-transform: none !important;
+}
+.formulario h3 {
+	font-size: 150%;
+	margin: 15px 10px;
+	padding: 10px 0;
+	font-weight: bold;
+}
+
+.formulario h3 small {
+	font-size: 70%;
+	color: #5d6162;
+}
+
+.formulario h4 {
+	font-size: 110%;
+	margin: 20px 10px 7px;
+	font-weight: bold;
+	color: #176f94;
+}
+
+.formulario .descripcion {
+	font-size: 105%;
+	line-height: 1.4em;
+	margin: 0 10px;
+	color: #333;
+}
+
+.formulario_actions {
+	margin: 3px 0;
+	padding: 7px;
+	padding-left: 0;
+	background-color: #ffc;
+	list-style: none;
+}
+
+.formulario_actions ul {
+	display: inline;
+}
+
+.formulario_actions h3 {
+	display: inline;
+	font-weight: bold;
+	margin-right: 15px;
+	padding: 7px;
+	background-color: #eee;
+}
+
+.formulario_actions li {
+	display: inline;
+	margin-right: 7px;
+}
+
+.meta {
+	float: right;
+	color: #77766F;
+	margin-right: 10px;
+	font-size: 85%;
+}
+
+.form {
+	width: 760px;
+	margin: 0 auto;
+}
+
+.form .radio_list label {
+	margin-right: 15px;
+}
+
+.form th {
+	white-space: nowrap;
+	font-style: italic;
+}
+
+.form td,.form th {
+	border-bottom: 1px solid #eee;
+	border-top: 1px solid #eee;
+	text-align: left;
+	vertical-align: top;
+	padding: 7px;
+}
+
+.form tfoot td,.form tfoot th {
+	border: 0;
+	height: 50px;
+	vertical-align: bottom;
+
+}
+
+.form .radio_list li {
+	display: inline;
+}
+

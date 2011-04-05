@@ -1,0 +1,218 @@
+AsignacionProyectos:
+  columns:
+    user_id:
+      type: integer
+      primary: true
+    proyecto_Id:
+      type: integer
+      primary: true
+  relations:
+    Proyecto:
+      foreignAlias: Asignaciones
+    sfGuardUser:
+      class: sfGuardUser
+      local: user_id
+      foreign: id
+      foreignAlias: Asignaciones
+
+Proyecto:
+  actAs: [Timestampable, Sluggable]
+  columns:
+    nombre:  { type: string(255), notnull: true, unique: true }
+    descripcion: { type: string(4000), notnull: true }
+    url:  { type: string(255) }
+  relations:
+    Users:
+      foreignAlias: Proyectos
+      class: sfGuardUser
+      foreign: user_id
+      refClass: AsignacionProyectos
+      
+Tipo:
+  actAs: { Timestampable: ~ }
+  columns:
+    nombre: { type: string(255), notnull: true, unique: true   }
+    
+Estado:
+  actAs: { Timestampable: ~ }
+  columns:
+    nombre: { type: string(255), notnull: true, unique: true  }
+    descripcion: { type: string(255)  }
+    fase: { type: string(255)  }
+    edicion: { type: boolean } 
+  relations:
+    EstadosHijos:
+      class: Estado
+      refClass: EstadoHijo
+      local: padre_id
+      foreign: hijo_id
+      foreignAlias: EstadosHijos
+      
+EstadoHijo:
+  columns:
+    padre_id: { type: integer, primary: true }
+    hijo_id: { type: integer, primary: true }
+    mensaje: {  type: string(255)}
+  relations:
+    EstadoPadre:
+      class: Estado
+      local: padre_id
+      alias: EstadosHijos
+      foreignAlias: EstadosPadres
+    EstadoHijo:
+      class: Estado
+      local: hijo_Id
+      alias: EstadosPadres
+      foreignAlias: EstadosHijos
+
+Artefacto:
+  actAs: [ Timestampable, Versionable ]
+  columns:
+    nombre: { type: string(255), notnull: true }
+    descripcion: { type: string(4000), notnull: true }
+    tipo_id: { type: integer, notnull: true }
+    proyecto_id:  { type: integer, notnull: true }
+    validado: {type:boolean}
+  relations:
+    Proyecto: { local: proyecto_id, foreign: id, foreignAlias: proyecto }
+    Tipo: { local: tipo_id, foreign: id, foreignAlias: tipo } 
+    Padres:
+      class: Artefacto
+      refClass: Relaciones
+      local: padre_id
+      foreign: hijo_id
+      foreignAlias: Hijos
+      
+Relaciones:
+  columns:
+    padre_id: { type: integer, primary: true }
+    hijo_id: { type: integer, primary: true }
+  relations:
+    Padre:
+      class: Artefacto
+      local: padre_id
+      alias: Hijos
+      foreignAlias: Padres
+    Hijo:
+      class: Artefacto
+      local: hijo_Id
+      alias: Padres
+      foreignAlias: Hijos
+      
+Ficheros:
+  tableName: ficheros
+  columns:
+    nombre:
+      type: string(100)
+    file:
+      type: string(255)
+    versionid:
+      type: integer
+      notnull: true
+    descripcion: string(200)
+    deleted: boolean
+  relations:
+    Version:
+      local: versionid
+      class: Version
+      foreign: id
+      foreignAlias: Ficheros
+
+FicherosArt:
+  tableName: ficherosArt
+  columns:
+    nombre:
+      type: string(100)
+    file:
+      type: string(255)
+    artefactoid:
+      type: integer
+      notnull: true
+    descripcion: string(200)
+    deleted: boolean
+  relations:
+    Artefacto:
+      local: artefactoid
+      class: Artefacto
+      foreign: id
+      foreignAlias: Ficheros      
+
+LineaBase:
+  actAs: [ Timestampable, Versionable ]
+  columns:
+    nombre: { type: string(255), notnull: true }
+    descripcion: { type: string(4000), notnull: true }
+    proyecto_id: { type: integer, notnull: true }
+  relations:
+    Proyecto: { foreignAlias: LineasBase }
+    Versiones:
+      foreignAlias: LineasBase
+      class: Version
+      refClass: LineasVersion
+      
+LineasVersion:
+  columns:
+    linea_base_id:
+      type: integer
+      primary: true
+    version_id:
+      type: integer
+      primary: true
+  relations:
+    Version:
+      foreignAlias: LineasBases
+    LineaBase:
+      foreignAlias: LineasBases
+
+Version:
+  actAs: [ Timestampable, Versionable ]
+  columns:
+    nombre: { type: string(255), notnull: true }
+    identificador: { type: integer, notnull: true }
+    descripcion: { type: string(4000) }
+    tipo_id: { type: integer, notnull: true }
+    estado_id: { type: integer, notnull: true }
+    artefacto_id: { type: integer, notnull: true }
+    validada: {type: boolean, notnull: true }
+  relations:
+    Estado: { local: estado_id, foreign: id, foreignAlias: estado }
+    Tipo: { local: tipo_id, foreign: id, foreignAlias: tipo } 
+    Artefacto:
+      foreignAlias: versiones
+    Users:
+      foreignAlias: Versiones
+      class: sfGuardUser
+      foreign: user_id
+      refClass: AsignacionTrabajadores
+
+AsignacionTrabajadores:
+  columns:
+    user_id:
+      type: integer
+      primary: true
+    version_id:
+      type: integer
+      primary: true
+  relations:
+    Version:
+      foreignAlias: AsignacionesTrabajo
+    sfGuardUser:
+      class: sfGuardUser
+      foreignAlias: AsignacionesTrabajo
+      local: user_id
+      foreign: id
+      
+Mensaje:
+  actAs: [ Timestampable ]
+  columns:
+    nombre: { type: string(300), notnull: true }
+    descripcion: { type: string(4000), notnull: true }
+    leido: { type: boolean }
+    user_id:
+      type: integer
+  relations:
+    sfGuardUser:
+      class: sfGuardUser
+      foreignAlias: Mensajes
+      local: user_id
+      foreign: id
