@@ -28,8 +28,13 @@
 
 <div class="content">
 <h1>Práctica de PGP realizada por:</h1>
-<h1>Javier Gamarra</h1>
-<h1>Carmen Loriente</h1>
+<ul>
+<li>
+Javier Gamarra</li>
+<li>Carmen Loriente</li>
+<li>Albano Narganes</li>
+<li>Francisco Javier Garcia</li>
+</ul>
 <h1><?php
 $svn = new subversion();
 $svn->addFile('proyect', '/home/grini/javgama/miweb/gestor/web/uploads/');
